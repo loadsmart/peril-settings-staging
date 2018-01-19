@@ -1,0 +1,10 @@
+{
+  "settings": {
+  },
+  "rules": {
+    "pull_request": "loadsmart/peril-settings@rules/pr.js",
+    "issues": "loadsmart/peril-settings@rules/issue.js"
+  },
+  "repos" : {
+  }
+}
