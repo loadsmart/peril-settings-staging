@@ -1,5 +1,5 @@
 import { danger, fail } from "danger"
-import { wrap } from "../rules/_wrap"
+import { wrap } from "./_wrap"
 
 export const needs_description = wrap("Every PR requires a description", () => {
   const pr = danger.github.pr
