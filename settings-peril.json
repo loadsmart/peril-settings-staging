@@ -1,5 +1,7 @@
 {
-  "settings": {},
+  "settings": {
+    "modules": ["danger-plugin-spellcheck"]
+  },
   "rules": {
     "pull_request": "loadsmart/peril-settings@rules/all-prs.ts",
     "issues.opened": "loadsmart/peril-settings@rules/all-issues.ts"

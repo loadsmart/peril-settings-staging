@@ -21,3 +21,8 @@ export const needs_description = wrap("Every PR requires a description", () => {
     fail("Please add a description to your PR.")
   }
 })
+
+import spellcheck from "danger-plugin-spellcheck"
+wrap("Keep our Markdown documents awesome", async () => {
+  await spellcheck({ settings: "loadsmart/peril-settings@spellcheck.json" })
+})

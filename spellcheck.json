@@ -1,0 +1,4 @@
+{
+  "ignore": ["/.*.md", "/.*.yml", "Fastlane", "Xcode"],
+  "whitelistFiles": ["CHANGELOG.md"]
+}
