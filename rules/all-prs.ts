@@ -1,4 +1,4 @@
-import { schedule, danger, fail } from "danger"
+import { schedule, danger, fail, warn } from "danger"
 
 // The inspiration for this is https://github.com/artsy/artsy-danger/blob/f019ee1a3abffabad65014afabe07cb9a12274e7/org/all-prs.ts
 const isJest = typeof jest !== "undefined"
@@ -19,6 +19,14 @@ export const needs_description = wrap("Every PR requires a description", () => {
   const pr = danger.github.pr
   if (pr.body === null || pr.body.length === 0) {
     fail("Please add a description to your PR.")
+  }
+})
+
+export const work_in_progress = wrap("Do not merge it yet. PR is still in progress.", () => {
+  const pr = danger.github.pr
+  const wipPR = pr.title.toLowerCase().includes("wip")
+  if (wipPR) {
+    warn("PR is classed as Work in Progress.")
   }
 })
 
