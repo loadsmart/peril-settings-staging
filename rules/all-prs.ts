@@ -30,6 +30,14 @@ export const work_in_progress = wrap("Do not merge it yet. PR is still in progre
   }
 })
 
+export const merge_commits = wrap("Keep the commit tree clean by getting rid of merge commits", () => {
+  const regex = RegExp(`^Merge branch '${danger.github.pr.base.ref}'`)
+  const hasMergeCommits = danger.git.commits.find(c => regex.test(c.message))
+  if (hasMergeCommits) {
+    fail("Please rebase to get rid of the merge commits in this PR.")
+  }
+})
+
 import spellcheck from "danger-plugin-spellcheck"
 wrap("Keep our Markdown documents awesome", async () => {
   await spellcheck({ settings: "loadsmart/peril-settings@spellcheck.json" })
