@@ -1,8 +1,6 @@
 {
   "settings": {
-    "modules": [
-      // "danger-plugin-spellcheck"
-    ]
+    "modules": ["danger-plugin-spellcheck"]
   },
   "rules": {
     "pull_request": "loadsmart/peril-settings@rules/all-prs.ts",

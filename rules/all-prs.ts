@@ -59,3 +59,8 @@ export const changelog = wrap("PRs need a changelog entry if changes are not #tr
     }
   }
 })
+
+import spellcheck from "danger-plugin-spellcheck"
+wrap("Keep our Markdown documents awesome", async () => {
+  await spellcheck({ settings: "loadsmart/peril-settings@spellcheck.json" })
+})
