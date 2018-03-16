@@ -15,14 +15,14 @@ const _run = (reason: string, closure: () => void | Promise<any>) =>
 
 export const wrap: any = isJest ? _test : _run
 
-export const needs_description = wrap("Every PR requires a description", () => {
+export const needsDescription = wrap("Every PR requires a description", () => {
   const pr = danger.github.pr
   if (pr.body === null || pr.body.length === 0) {
     fail("Please add a description to your PR.")
   }
 })
 
-export const work_in_progress = wrap("Do not merge it yet. PR is still in progress.", () => {
+export const workInProgress = wrap("Do not merge it yet. PR is still in progress.", () => {
   const pr = danger.github.pr
   const wipPR = pr.title.toLowerCase().includes("wip")
   if (wipPR) {
@@ -30,7 +30,7 @@ export const work_in_progress = wrap("Do not merge it yet. PR is still in progre
   }
 })
 
-export const merge_commits = wrap("Keep the commit tree clean by getting rid of merge commits", () => {
+export const mergeCommits = wrap("Keep the commit tree clean by getting rid of merge commits", () => {
   const regex = RegExp(`^Merge branch '${danger.github.pr.base.ref}'`)
   const hasMergeCommits = danger.git.commits.find(c => regex.test(c.message))
   if (hasMergeCommits) {
@@ -59,8 +59,3 @@ export const changelog = wrap("PRs need a changelog entry if changes are not #tr
     }
   }
 })
-
-// import spellcheck from "danger-plugin-spellcheck"
-// wrap("Keep our Markdown documents awesome", async () => {
-//   await spellcheck({ settings: "loadsmart/peril-settings@spellcheck.json" })
-// })

@@ -13,8 +13,9 @@ const _test = (reason: string, closure: () => void | Promise<any>) =>
 const _run = (reason: string, closure: () => void | Promise<any>) =>
   closure instanceof Promise ? schedule(closure) : closure()
 
+export const wrap: any = isJest ? _test : _run
+
 // Example
-// export const wrap: any = isJest ? _test : _run
 // export const hello = wrap("Hello from Peril", () => {
 //   message("Hello from Peril on your new issue.")
 // })
