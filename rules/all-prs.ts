@@ -70,7 +70,7 @@ export const testsUpdated = wrap("Source code changes require test updates", () 
   }
 })
 
-import spellcheck from "danger-plugin-spellcheck"
-wrap("Keep our Markdown documents awesome", async () => {
-  await spellcheck({ settings: "loadsmart/peril-settings@spellcheck.json" })
-})
+// import spellcheck from "danger-plugin-spellcheck"
+// wrap("Keep our Markdown documents awesome", async () => {
+//   await spellcheck({ settings: "loadsmart/peril-settings@spellcheck.json" })
+// })
