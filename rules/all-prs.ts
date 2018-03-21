@@ -26,7 +26,7 @@ export const workInProgress = wrap("Do not merge it yet. PR is still in progress
   const pr = danger.github.pr
   const wipPR = pr.title.toLowerCase().includes("wip")
   if (wipPR) {
-    warn("PR is classed as Work in Progress.")
+    warn("Do not merge it yet. PR is still in progress.")
   }
 })
 
@@ -60,7 +60,17 @@ export const changelog = wrap("PRs need a changelog entry if changes are not #tr
   }
 })
 
-// import spellcheck from "danger-plugin-spellcheck"
-// wrap("Keep our Markdown documents awesome", async () => {
-//   await spellcheck({ settings: "loadsmart/peril-settings@spellcheck.json" })
-// })
+export const testsUpdated = wrap("Source code changes require test updates", () => {
+  const files = [...danger.git.modified_files, ...danger.git.created_files]
+  const hasCodeChanges = files.find(file => !file.match(/(test|spec)/i))
+  const hasTestChanges = files.find(file => !!file.match(/(test|spec)/i))
+
+  if (hasCodeChanges && !hasTestChanges) {
+    warn("Tests were not updated")
+  }
+})
+
+import spellcheck from "danger-plugin-spellcheck"
+wrap("Keep our Markdown documents awesome", async () => {
+  await spellcheck({ settings: "loadsmart/peril-settings@spellcheck.json" })
+})

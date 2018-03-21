@@ -11,7 +11,7 @@ beforeEach(() => {
 it("warns when PR is classed as Work in Progress", () => {
   dm.danger = { github: { pr: { title: "WIP: awesome feature" } } }
   return workInProgress().then(() => {
-    expect(dm.warn).toHaveBeenCalledWith("PR is classed as Work in Progress.")
+    expect(dm.warn).toHaveBeenCalledWith("Do not merge it yet. PR is still in progress.")
   })
 })
 
