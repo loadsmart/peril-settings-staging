@@ -1,4 +1,4 @@
-import { schedule, danger, fail, warn } from "danger"
+import { schedule, danger, fail, warn, message } from "danger"
 
 // The inspiration for this is https://github.com/artsy/artsy-danger/blob/f019ee1a3abffabad65014afabe07cb9a12274e7/org/all-prs.ts
 const isJest = typeof jest !== "undefined"
@@ -92,6 +92,12 @@ export const bigPR = wrap("The smaller the PR, the easier to review it", async (
 
   if (diffCount > 500) {
     warn("Big PR. Consider splitting it into smaller ones")
+  }
+})
+
+export const goodJobCleaningCode = wrap("Congratulate for doing some housekeeping", () => {
+  if (danger.github.pr.deletions > danger.github.pr.additions) {
+    message("Good job on cleaning the code")
   }
 })
 
