@@ -6,5 +6,12 @@
     "pull_request": "loadsmart/peril-settings@rules/all-prs.ts",
     "issues.opened": "loadsmart/peril-settings@rules/all-issues.ts"
   },
-  "repos": {}
+  "repos": {
+    "loadsmart/driver-ios": {
+      "pull_request": "loadsmart/peril-settings@rules/ios-prs.ts"
+    },
+    "loadsmart/ios-sdk": {
+      "pull_request": "loadsmart/peril-settings@rules/ios-prs.ts"
+    }
+  }
 }
