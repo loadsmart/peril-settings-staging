@@ -15,10 +15,10 @@ const _run = (reason: string, closure: () => void | Promise<any>) =>
 
 export const wrap: any = isJest ? _test : _run
 
-export const viewFilesWereChanged = wrap("View-ish files changes requires a screenshot ", () => {
+export const viewFilesWereChanged = wrap("View-ish file changes require a screenshot ", () => {
   const extensions = [".xib", ".storyboard", "View.swift", "Button.swift"]
   const files = [...danger.git.modified_files, ...danger.git.created_files]
-  const hasViewChanges = files.some(file => extensions.some(ext => file.endsWith(ext)))
+  const hasViewChanges = files.some(file => !!file.match(/\/views?\//i) || extensions.some(ext => file.endsWith(ext)))
   const prHasScreenshot = danger.github.pr.body.match(/https?:\/\/\S*\.(png|jpg|jpeg|gif){1}/)
 
   if (hasViewChanges && !prHasScreenshot) {

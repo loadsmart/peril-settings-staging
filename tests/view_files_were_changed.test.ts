@@ -69,6 +69,36 @@ it("warns when code has changes on button files and PR has no description", () =
   })
 })
 
+it("warns when code has changes in a file inside /view/ directory", () => {
+  dm.danger.git = {
+    modified_files: ["/Some/Path/View/File.swift"],
+    created_files: [],
+  }
+  dm.danger.github = {
+    pr: {
+      body: "Not a screenshot",
+    },
+  }
+  return viewFilesWereChanged().then(() => {
+    expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
+  })
+})
+
+it("warns when code has changes in a file inside /views/ directory", () => {
+  dm.danger.git = {
+    modified_files: ["/Some/Path/Views/File.swift"],
+    created_files: [],
+  }
+  dm.danger.github = {
+    pr: {
+      body: "Not a screenshot",
+    },
+  }
+  return viewFilesWereChanged().then(() => {
+    expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
+  })
+})
+
 it("does not warn when code has view changes and PR has a screenshot", () => {
   dm.danger.git = {
     modified_files: ["MyAwesome.xib"],
