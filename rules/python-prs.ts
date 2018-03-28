@@ -29,3 +29,27 @@ export const pdb = wrap("Don't let (i)pdb get into master", async () => {
   }
   await checkFiles()
 })
+
+export const importStar = wrap("Check if diff contains 'import *'", async () => {
+  const files = [...danger.git.modified_files, ...danger.git.created_files]
+  const pyFiles = files
+    .filter(file => {
+      return file.endsWith(".py")
+    })
+    .filter(pyFile => {
+      return !pyFile.includes("=>")
+    })
+
+  async function checkFiles() {
+    const regex = /\s+import\s+\*/i
+    for (const pyFile in pyFiles) {
+      const diff = await danger.git.diffForFile(pyFile)
+
+      if (diff != null && regex.test(diff.added)) {
+        fail("Please avoid `import *` - explicit is better than implicit!")
+      }
+    }
+  }
+
+  await checkFiles()
+})
