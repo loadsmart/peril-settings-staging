@@ -114,6 +114,21 @@ it("does not warn when code has view changes and PR has a screenshot", () => {
   })
 })
 
+it("does not warn when code has view changes and PR has a snapshot test", () => {
+  dm.danger.git = {
+    modified_files: ["MyAwesome.xib"],
+    created_files: ["ShipmentHeaderViewSpec/view__when_shipment_has_temperature_set__has_a_valid_snapshot@2x.png"],
+  }
+  dm.danger.github = {
+    pr: {
+      body: "Not a screenshot",
+    },
+  }
+  return viewFilesWereChanged().then(() => {
+    expect(dm.warn).not.toHaveBeenCalled()
+  })
+})
+
 it("does not warn when code has no view changes", () => {
   dm.danger.git = {
     modified_files: ["MyAwesome.swift"],
