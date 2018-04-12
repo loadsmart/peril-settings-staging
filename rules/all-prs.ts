@@ -81,10 +81,11 @@ export const bigPR = wrap("The smaller the PR, the easier to review it", async (
   var diffCount = 0
   async function fetchDiffs() {
     for (let filename of files) {
-      const diff: any = await danger.git.JSONDiffForFile(filename)
-      const added: any[] = diff.added
-      const removed: any[] = diff.removed
-      diffCount += added.length + removed.length
+      warn(filename)
+//       const diff: any = await danger.git.JSONDiffForFile(filename)
+//       const added: any[] = diff.added
+//       const removed: any[] = diff.removed
+//       diffCount += added.length + removed.length
     }
   }
 
