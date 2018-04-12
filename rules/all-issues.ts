@@ -16,6 +16,6 @@ const _run = (reason: string, closure: () => void | Promise<any>) =>
 export const wrap: any = isJest ? _test : _run
 
 // Example
-export const hello = wrap("Hello from Peril", () => {
-  message("Hello from Peril on your new issue.")
-})
+// export const hello = wrap("Hello from Peril", () => {
+//   message("Hello from Peril on your new issue.")
+// })
