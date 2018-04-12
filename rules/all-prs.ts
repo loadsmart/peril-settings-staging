@@ -22,13 +22,13 @@ export const needsDescription = wrap("Every PR requires a description", () => {
   }
 })
 
-// export const workInProgress = wrap("Do not merge it yet. PR is still in progress.", () => {
-//   const pr = danger.github.pr
-//   const wipPR = pr.title.toLowerCase().includes("wip")
-//   if (wipPR) {
-//     warn("Do not merge it yet. PR is still in progress.")
-//   }
-// })
+export const workInProgress = wrap("Do not merge it yet. PR is still in progress.", () => {
+  const pr = danger.github.pr
+  const wipPR = pr.title.toLowerCase().includes("wip")
+  if (wipPR) {
+    warn("Do not merge it yet. PR is still in progress.")
+  }
+})
 
 // export const mergeCommits = wrap("Keep the commit tree clean by getting rid of merge commits", () => {
 //   const regex = RegExp(`^Merge branch '${danger.github.pr.base.ref}'`)
