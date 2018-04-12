@@ -70,30 +70,34 @@ export const testsUpdated = wrap("Source code changes require test updates", () 
   }
 })
 
-export const bigPR = wrap("The smaller the PR, the easier to review it", async () => {
-  const ignoredExtensions = [".snap", ".xib", ".storyboard"]
-  const files = [...danger.git.modified_files, ...danger.git.created_files, ...danger.git.deleted_files].filter(
-    filename => {
-      return !ignoredExtensions.some(ext => filename.endsWith(ext))
-    }
-  )
+// danger.git.JSONDiffForFile is not working properly
+// 1. https://github.com/octokit/rest.js/issues/602
+// 2. https://github.com/danger/danger-js/blob/0c7e7d7233f12ca0e3afcc45f6b9b4c881cc5bdb/source/platforms/github/GitHubGit.ts#L39
 
-  var diffCount = 0
-  async function fetchDiffs() {
-    for (let filename of files) {
-      const diff: any = await danger.git.JSONDiffForFile(filename)
-      const added: any[] = diff.added
-      const removed: any[] = diff.removed
-      diffCount += added.length + removed.length
-    }
-  }
+// export const bigPR = wrap("The smaller the PR, the easier to review it", async () => {
+//   const ignoredExtensions = [".snap", ".xib", ".storyboard"]
+//   const files = [...danger.git.modified_files, ...danger.git.created_files, ...danger.git.deleted_files].filter(
+//     filename => {
+//       return !ignoredExtensions.some(ext => filename.endsWith(ext))
+//     }
+//   )
 
-  await fetchDiffs()
+//   var diffCount = 0
+//   async function fetchDiffs() {
+//     for (let filename of files) {
+//       const diff: any = await danger.git.JSONDiffForFile(filename)
+//       const added: any[] = diff.added
+//       const removed: any[] = diff.removed
+//       diffCount += added.length + removed.length
+//     }
+//   }
 
-  if (diffCount > 500) {
-    warn("Big PR. Consider splitting it into smaller ones")
-  }
-})
+//   await fetchDiffs()
+
+//   if (diffCount > 500) {
+//     warn("Big PR. Consider splitting it into smaller ones")
+//   }
+// })
 
 export const goodJobCleaningCode = wrap("Congratulate for doing some housekeeping", () => {
   if (danger.github.pr.deletions > danger.github.pr.additions) {
