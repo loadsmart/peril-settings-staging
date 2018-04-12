@@ -15,12 +15,12 @@ const _run = (reason: string, closure: () => void | Promise<any>) =>
 
 export const wrap: any = isJest ? _test : _run
 
-// export const needsDescription = wrap("Every PR requires a description", () => {
-//   const pr = danger.github.pr
-//   if (pr.body === null || pr.body.length === 0) {
-//     fail("Please add a description to your PR.")
-//   }
-// })
+export const needsDescription = wrap("Every PR requires a description", () => {
+  const pr = danger.github.pr
+  if (pr.body === null || pr.body.length === 0) {
+    fail("Please add a description to your PR.")
+  }
+})
 
 // export const workInProgress = wrap("Do not merge it yet. PR is still in progress.", () => {
 //   const pr = danger.github.pr
