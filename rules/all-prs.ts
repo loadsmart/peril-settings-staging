@@ -15,28 +15,28 @@ const _run = (reason: string, closure: () => void | Promise<any>) =>
 
 export const wrap: any = isJest ? _test : _run
 
-export const needsDescription = wrap("Every PR requires a description", () => {
-  const pr = danger.github.pr
-  if (pr.body === null || pr.body.length === 0) {
-    fail("Please add a description to your PR.")
-  }
-})
+// export const needsDescription = wrap("Every PR requires a description", () => {
+//   const pr = danger.github.pr
+//   if (pr.body === null || pr.body.length === 0) {
+//     fail("Please add a description to your PR.")
+//   }
+// })
 
-export const workInProgress = wrap("Do not merge it yet. PR is still in progress.", () => {
-  const pr = danger.github.pr
-  const wipPR = pr.title.toLowerCase().includes("wip")
-  if (wipPR) {
-    warn("Do not merge it yet. PR is still in progress.")
-  }
-})
+// export const workInProgress = wrap("Do not merge it yet. PR is still in progress.", () => {
+//   const pr = danger.github.pr
+//   const wipPR = pr.title.toLowerCase().includes("wip")
+//   if (wipPR) {
+//     warn("Do not merge it yet. PR is still in progress.")
+//   }
+// })
 
-export const mergeCommits = wrap("Keep the commit tree clean by getting rid of merge commits", () => {
-  const regex = RegExp(`^Merge branch '${danger.github.pr.base.ref}'`)
-  const hasMergeCommits = danger.git.commits.find(c => regex.test(c.message))
-  if (hasMergeCommits) {
-    fail("Please rebase to get rid of the merge commits in this PR.")
-  }
-})
+// export const mergeCommits = wrap("Keep the commit tree clean by getting rid of merge commits", () => {
+//   const regex = RegExp(`^Merge branch '${danger.github.pr.base.ref}'`)
+//   const hasMergeCommits = danger.git.commits.find(c => regex.test(c.message))
+//   if (hasMergeCommits) {
+//     fail("Please rebase to get rid of the merge commits in this PR.")
+//   }
+// })
 
 // export const changelog = wrap("PRs need a changelog entry if changes are not #trivial", async () => {
 //   const pr = danger.github.pr
@@ -60,46 +60,46 @@ export const mergeCommits = wrap("Keep the commit tree clean by getting rid of m
 //   }
 // })
 
-export const testsUpdated = wrap("Source code changes require test updates", () => {
-  const files = [...danger.git.modified_files, ...danger.git.created_files]
-  const hasCodeChanges = files.find(file => !file.match(/(test|spec)/i))
-  const hasTestChanges = files.find(file => !!file.match(/(test|spec)/i))
+// export const testsUpdated = wrap("Source code changes require test updates", () => {
+//   const files = [...danger.git.modified_files, ...danger.git.created_files]
+//   const hasCodeChanges = files.find(file => !file.match(/(test|spec)/i))
+//   const hasTestChanges = files.find(file => !!file.match(/(test|spec)/i))
 
-  if (hasCodeChanges && !hasTestChanges) {
-    warn("Tests were not updated")
-  }
-})
+//   if (hasCodeChanges && !hasTestChanges) {
+//     warn("Tests were not updated")
+//   }
+// })
 
-export const bigPR = wrap("The smaller the PR, the easier to review it", async () => {
-  const ignoredExtensions = [".snap", ".xib", ".storyboard"]
-  const files = [...danger.git.modified_files, ...danger.git.created_files, ...danger.git.deleted_files].filter(
-    filename => {
-      return !ignoredExtensions.some(ext => filename.endsWith(ext))
-    }
-  )
+// export const bigPR = wrap("The smaller the PR, the easier to review it", async () => {
+//   const ignoredExtensions = [".snap", ".xib", ".storyboard"]
+//   const files = [...danger.git.modified_files, ...danger.git.created_files, ...danger.git.deleted_files].filter(
+//     filename => {
+//       return !ignoredExtensions.some(ext => filename.endsWith(ext))
+//     }
+//   )
 
-  var diffCount = 0
-  async function fetchDiffs() {
-    for (let filename of files) {
-      const diff: any = await danger.git.JSONDiffForFile(filename)
-      const added: any[] = diff.added
-      const removed: any[] = diff.removed
-      diffCount += added.length + removed.length
-    }
-  }
+//   var diffCount = 0
+//   async function fetchDiffs() {
+//     for (let filename of files) {
+//       const diff: any = await danger.git.JSONDiffForFile(filename)
+//       const added: any[] = diff.added
+//       const removed: any[] = diff.removed
+//       diffCount += added.length + removed.length
+//     }
+//   }
 
-  await fetchDiffs()
+//   await fetchDiffs()
 
-  if (diffCount > 500) {
-    warn("Big PR. Consider splitting it into smaller ones")
-  }
-})
+//   if (diffCount > 500) {
+//     warn("Big PR. Consider splitting it into smaller ones")
+//   }
+// })
 
-export const goodJobCleaningCode = wrap("Congratulate for doing some housekeeping", () => {
-  if (danger.github.pr.deletions > danger.github.pr.additions) {
-    message("Good job on cleaning the code")
-  }
-})
+// export const goodJobCleaningCode = wrap("Congratulate for doing some housekeeping", () => {
+//   if (danger.github.pr.deletions > danger.github.pr.additions) {
+//     message("Good job on cleaning the code")
+//   }
+// })
 
 // import spellcheck from "danger-plugin-spellcheck"
 // wrap("Keep our Markdown documents awesome", async () => {
