@@ -95,11 +95,11 @@ export const testsUpdated = wrap("Source code changes require test updates", () 
 //   }
 // })
 
-// export const goodJobCleaningCode = wrap("Congratulate for doing some housekeeping", () => {
-//   if (danger.github.pr.deletions > danger.github.pr.additions) {
-//     message("Good job on cleaning the code")
-//   }
-// })
+export const goodJobCleaningCode = wrap("Congratulate for doing some housekeeping", () => {
+  if (danger.github.pr.deletions > danger.github.pr.additions) {
+    message("Good job on cleaning the code")
+  }
+})
 
 // import spellcheck from "danger-plugin-spellcheck"
 // wrap("Keep our Markdown documents awesome", async () => {
