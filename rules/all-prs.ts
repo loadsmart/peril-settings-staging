@@ -30,13 +30,13 @@ export const workInProgress = wrap("Do not merge it yet. PR is still in progress
   }
 })
 
-// export const mergeCommits = wrap("Keep the commit tree clean by getting rid of merge commits", () => {
-//   const regex = RegExp(`^Merge branch '${danger.github.pr.base.ref}'`)
-//   const hasMergeCommits = danger.git.commits.find(c => regex.test(c.message))
-//   if (hasMergeCommits) {
-//     fail("Please rebase to get rid of the merge commits in this PR.")
-//   }
-// })
+export const mergeCommits = wrap("Keep the commit tree clean by getting rid of merge commits", () => {
+  const regex = RegExp(`^Merge branch '${danger.github.pr.base.ref}'`)
+  const hasMergeCommits = danger.git.commits.find(c => regex.test(c.message))
+  if (hasMergeCommits) {
+    fail("Please rebase to get rid of the merge commits in this PR.")
+  }
+})
 
 // export const changelog = wrap("PRs need a changelog entry if changes are not #trivial", async () => {
 //   const pr = danger.github.pr
