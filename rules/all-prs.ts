@@ -60,40 +60,40 @@ export const changelog = wrap("PRs need a changelog entry if changes are not #tr
   }
 })
 
-// export const testsUpdated = wrap("Source code changes require test updates", () => {
-//   const files = [...danger.git.modified_files, ...danger.git.created_files]
-//   const hasCodeChanges = files.find(file => !file.match(/(test|spec)/i))
-//   const hasTestChanges = files.find(file => !!file.match(/(test|spec)/i))
+export const testsUpdated = wrap("Source code changes require test updates", () => {
+  const files = [...danger.git.modified_files, ...danger.git.created_files]
+  const hasCodeChanges = files.find(file => !file.match(/(test|spec)/i))
+  const hasTestChanges = files.find(file => !!file.match(/(test|spec)/i))
 
-//   if (hasCodeChanges && !hasTestChanges) {
-//     warn("Tests were not updated")
-//   }
-// })
+  if (hasCodeChanges && !hasTestChanges) {
+    warn("Tests were not updated")
+  }
+})
 
-// export const bigPR = wrap("The smaller the PR, the easier to review it", async () => {
-//   const ignoredExtensions = [".snap", ".xib", ".storyboard"]
-//   const files = [...danger.git.modified_files, ...danger.git.created_files, ...danger.git.deleted_files].filter(
-//     filename => {
-//       return !ignoredExtensions.some(ext => filename.endsWith(ext))
-//     }
-//   )
+export const bigPR = wrap("The smaller the PR, the easier to review it", async () => {
+  const ignoredExtensions = [".snap", ".xib", ".storyboard"]
+  const files = [...danger.git.modified_files, ...danger.git.created_files, ...danger.git.deleted_files].filter(
+    filename => {
+      return !ignoredExtensions.some(ext => filename.endsWith(ext))
+    }
+  )
 
-//   var diffCount = 0
-//   async function fetchDiffs() {
-//     for (let filename of files) {
-//       const diff: any = await danger.git.JSONDiffForFile(filename)
-//       const added: any[] = diff.added
-//       const removed: any[] = diff.removed
-//       diffCount += added.length + removed.length
-//     }
-//   }
+  var diffCount = 0
+  async function fetchDiffs() {
+    for (let filename of files) {
+      const diff: any = await danger.git.JSONDiffForFile(filename)
+      const added: any[] = diff.added
+      const removed: any[] = diff.removed
+      diffCount += added.length + removed.length
+    }
+  }
 
-//   await fetchDiffs()
+  await fetchDiffs()
 
-//   if (diffCount > 500) {
-//     warn("Big PR. Consider splitting it into smaller ones")
-//   }
-// })
+  if (diffCount > 500) {
+    warn("Big PR. Consider splitting it into smaller ones")
+  }
+})
 
 // export const goodJobCleaningCode = wrap("Congratulate for doing some housekeeping", () => {
 //   if (danger.github.pr.deletions > danger.github.pr.additions) {
