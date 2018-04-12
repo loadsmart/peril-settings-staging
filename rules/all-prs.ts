@@ -38,27 +38,27 @@ export const mergeCommits = wrap("Keep the commit tree clean by getting rid of m
   }
 })
 
-export const changelog = wrap("PRs need a changelog entry if changes are not #trivial", async () => {
-  const pr = danger.github.pr
-  const changelogs = ["CHANGELOG.md", "changelog.md", "CHANGELOG.yml"]
-  const isOpen = danger.github.pr.state === "open"
+// export const changelog = wrap("PRs need a changelog entry if changes are not #trivial", async () => {
+//   const pr = danger.github.pr
+//   const changelogs = ["CHANGELOG.md", "changelog.md", "CHANGELOG.yml"]
+//   const isOpen = danger.github.pr.state === "open"
 
-  const getContentParams = { path: "", owner: pr.head.user.login, repo: pr.head.repo.name }
-  const rootContents: any = await danger.github.api.repos.getContent(getContentParams)
+//   const getContentParams = { path: "", owner: pr.head.user.login, repo: pr.head.repo.name }
+//   const rootContents: any = await danger.github.api.repos.getContent(getContentParams)
 
-  const hasChangelog = rootContents.data.find((file: any) => changelogs.includes(file.name))
+//   const hasChangelog = rootContents.data.find((file: any) => changelogs.includes(file.name))
 
-  if (isOpen && hasChangelog) {
-    const files = [...danger.git.modified_files, ...danger.git.created_files]
+//   if (isOpen && hasChangelog) {
+//     const files = [...danger.git.modified_files, ...danger.git.created_files]
 
-    const hasCodeChanges = files.find(file => !file.match(/(test|spec)/i))
-    const hasChangelogChanges = files.find(file => changelogs.includes(file))
+//     const hasCodeChanges = files.find(file => !file.match(/(test|spec)/i))
+//     const hasChangelogChanges = files.find(file => changelogs.includes(file))
 
-    if (hasCodeChanges && !hasChangelogChanges) {
-      warn("It looks like code was changed without adding anything to the Changelog.")
-    }
-  }
-})
+//     if (hasCodeChanges && !hasChangelogChanges) {
+//       warn("It looks like code was changed without adding anything to the Changelog.")
+//     }
+//   }
+// })
 
 export const testsUpdated = wrap("Source code changes require test updates", () => {
   const files = [...danger.git.modified_files, ...danger.git.created_files]
