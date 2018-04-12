@@ -4,6 +4,10 @@
 
 // import { bigPR } from "../rules/all-prs"
 
+it("passes") {
+  expect(1).toBe(1)
+}
+
 // beforeEach(() => {
 //   dm.danger = {}
 //   dm.warn = jest.fn()
