@@ -26,3 +26,13 @@ export const viewFilesWereChanged = wrap("View-ish file changes require a screen
     warn("View files were changed. Maybe you want to add a screenshot to your PR.")
   }
 })
+
+export const podfileLock = wrap("Don't let Podfile.lock outdated", () => {
+  const files = [...danger.git.modified_files, ...danger.git.created_files]
+  const hasPodfile = files.some(file => file == "Podfile")
+  const hasPodfileLock = files.some(file => file == "Podfile.lock")
+
+  if (hasPodfile && !hasPodfileLock) {
+    warn("Podfile was modified and Podfile.lock was not. Please update your lock file.")
+  }
+})
