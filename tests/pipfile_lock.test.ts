@@ -30,3 +30,13 @@ it("does not warn when both Pipfile and Pipfile.lock were modified", () => {
     expect(dm.warn).not.toHaveBeenCalled()
   })
 })
+
+it("does not warn when both Pipfile and Pipfile.lock were modified", () => {
+  dm.danger.git = {
+    modified_files: ["Something else"],
+  }
+
+  return pipfileLock().then(() => {
+    expect(dm.warn).not.toHaveBeenCalled()
+  })
+})
