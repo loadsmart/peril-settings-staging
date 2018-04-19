@@ -4,6 +4,15 @@
 
 🔧 Settings for Loadsmart's hosted Danger instance
 
+## How to add Peril to my repo
+
+Go to [org settings][org-settings], and them select _Installed Github
+Apps_.
+
+On the configuration screen for peril-loadsmart app, under _Repository
+Access_ section, choose the repository you want to peril check on and
+then just click _Save_ button.
+
 ## Install
 
 ```bash
@@ -17,3 +26,5 @@ $ yarn install
 ```bash
 $ yarn jest
 ```
+
+[org-settings]: https://github.com/organizations/loadsmart/settings/profile
