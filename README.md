@@ -6,12 +6,12 @@
 
 ## How to add Peril to my repo
 
-Go to [org settings][org-settings], and them select _Installed Github
+Go to [org settings][org-settings], and then select _Installed Github
 Apps_.
 
 On the configuration screen for peril-loadsmart app, under _Repository
-Access_ section, choose the repository you want to peril check on and
-then just click _Save_ button.
+Access_ section, choose the repository you want Peril to run and then
+click _Save_.
 
 ## Install
 
