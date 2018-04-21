@@ -10,45 +10,66 @@ beforeEach(() => {
 })
 
 it("fails when pdb is left in file", () => {
+  const modifiedFile = "some/file.py"
+
   dm.danger.git = {
-    modified_files: ["some/file.py"],
+    modified_files: [modifiedFile],
     created_files: [],
   }
+
   dm.danger.github = {
     utils: {
-      fileContents: (filename: String) => Promise.resolve("import pdb"),
+      fileContents: (filename: String) => {
+        const content = filename === modifiedFile ? "import pdb" : ""
+        return Promise.resolve(content)
+      },
     },
   }
+
   return pdb().then(() => {
     expect(dm.fail).toHaveBeenCalledWith("(i)pdb left in the code")
   })
 })
 
 it("fails when ipdb is left in file", () => {
+  const modifiedFile = "some/file.py"
+
   dm.danger.git = {
-    modified_files: ["some/file.py"],
+    modified_files: [modifiedFile],
     created_files: [],
   }
+
   dm.danger.github = {
     utils: {
-      fileContents: (filename: String) => Promise.resolve("import ipdb"),
+      fileContents: (filename: String) => {
+        const content = filename === modifiedFile ? "import ipdb" : ""
+        return Promise.resolve(content)
+      },
     },
   }
+
   return pdb().then(() => {
     expect(dm.fail).toHaveBeenCalledWith("(i)pdb left in the code")
   })
 })
 
 it("does not fail when neither pdb nor ipdb is left in file", () => {
+  const modifiedFile = "some/file.py"
+
   dm.danger.git = {
-    modified_files: ["some/file.py"],
+    modified_files: [modifiedFile],
     created_files: [],
   }
+
   dm.danger.github = {
     utils: {
-      fileContents: (filename: String) => Promise.resolve("import datetime"),
+      fileContents: (filename: String) => {
+        const content = filename === modifiedFile ? "import datetime" : ""
+        return Promise.resolve(content)
+      },
     },
   }
+
   return pdb().then(() => {
     expect(dm.fail).not.toHaveBeenCalled()
   })
