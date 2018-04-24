@@ -13,6 +13,8 @@ On the configuration screen for peril-loadsmart app, under _Repository
 Access_ section, choose the repository you want Peril to run and then
 click _Save_.
 
+![repository list](https://help.github.com/assets/images/help/marketplace/marketplace-select-repo-field.png)
+
 ## Install
 
 ```bash
