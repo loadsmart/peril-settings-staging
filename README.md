@@ -11,7 +11,7 @@ you want to install peril for your repositories, you probably want to
 take a look at the general instructions available at
 [peril repository][peril-repo].
 
-For Loadsmart organization, the app is already instaled and configured.
+For Loadsmart organization, the app is already installed and configured.
 You'll only need to enable it for your repository.
 
 Go to [org settings][org-settings], and then select _Installed Github
@@ -43,4 +43,4 @@ $ yarn jest
 ```
 
 [org-settings]: https://github.com/organizations/loadsmart/settings/profile
-[preil-repo]: https://github.com/danger/peril
+[peril-repo]: https://github.com/danger/peril
