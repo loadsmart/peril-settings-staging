@@ -14,6 +14,11 @@
     },
     "loadsmart/ios-sdk": {
       "pull_request": "loadsmart/peril-settings@rules/ios-prs.ts"
+    },
+    "loadsmart/alice": {
+      "pull_request": "loadsmart/peril-settings@rules/python-prs.ts",
+      "issue_comment.created": "loadsmart/peril-settings@rules/mark-as-merge-on-green.ts",
+      "status.success": "loadsmart/peril-settings@rules/merge-on-green.ts"
     }
   }
 }
