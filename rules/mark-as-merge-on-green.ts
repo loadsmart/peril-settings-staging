@@ -15,6 +15,8 @@ interface Label {
 
 /** If a comment to an issue contains "merge-on-green", apply a label for it to be merged when green. */
 export default async (issueComment: IssueComment) => {
+  console.info("Starting rule to mark as merge on green")
+
   const issue = issueComment.issue
   const comment = issueComment.comment
   const api = danger.github.api
