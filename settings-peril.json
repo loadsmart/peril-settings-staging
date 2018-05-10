@@ -5,7 +5,7 @@
   "rules": {
     "pull_request": "loadsmart/peril-settings@rules/all-prs.ts",
     "issues.opened": "loadsmart/peril-settings@rules/all-issues.ts",
-    "issue_comment": "loadsmart/peril-settings@rules/merge-on-green/mark-as-merge-on-green.ts",
+    "issue_comment.created": "loadsmart/peril-settings@rules/merge-on-green/mark-as-merge-on-green.ts",
     "status.success": "loadsmart/peril-settings@rules/merge-on-green/merge-on-green.ts"
   },
   "repos": {
