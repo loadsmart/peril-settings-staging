@@ -3,7 +3,7 @@ import { Status } from "github-webhook-event-types"
 import { LabelLabel } from "github-webhook-event-types/source/Label"
 
 export default async (status: Status) => {
-  console.info("Starting rule to merge on green")
+  console.info("Starting rule to merge-on-green")
 
   const api = danger.github.api
 
@@ -39,9 +39,9 @@ export default async (status: Status) => {
 
     // Get the PR combined status
     console.log("Get the PR combined status")
-    const mergeLabel = issue.data.labels.find((l: LabelLabel) => l.name === "Merge On Green")
+    const mergeLabel = issue.data.labels.find((l: LabelLabel) => l.name === "merge-on-green")
     if (!mergeLabel) {
-      return console.error("PR does not have Merge on Green")
+      return console.error("PR does not have merge-on-green")
     }
 
     // Merge the PR
