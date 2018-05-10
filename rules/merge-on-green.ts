@@ -50,9 +50,9 @@ export default async (status: Status) => {
     try {
       await api.pullRequests.merge({ owner, repo, number, commit_title: "Merged by Peril" })
       console.log(`Merged Pull Request ${number}`)
-    } catch {
+    } catch (e) {
       console.error("Error merging PR:")
-      console.error(error)
+      console.error(e)
     }
   }
 }
