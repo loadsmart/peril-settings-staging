@@ -4,8 +4,6 @@ import { LabelLabel } from "github-webhook-event-types/source/Label"
 import { error } from "util"
 
 export default async (status: Status) => {
-  console.info("Starting rule to merge-on-green")
-
   const api = danger.github.api
 
   if (status.state !== "success") {
@@ -15,7 +13,6 @@ export default async (status: Status) => {
   }
 
   // Check to see if all other statuses on the same commit are also green. E.g. is this the last green.
-  console.info("Check to see if all other statuses on the same commit are also green. E.g. is this the last green.")
   const owner = status.repository.owner.login
   const repo = status.repository.name
   const allGreen = await api.repos.getCombinedStatusForRef({ owner, repo, ref: status.commit.sha })
@@ -24,29 +21,22 @@ export default async (status: Status) => {
   }
 
   // See https://github.com/maintainers/early-access-feedback/issues/114 for more context on getting a PR from a SHA
-  console.log(
-    "See https://github.com/maintainers/early-access-feedback/issues/114 for more context on getting a PR from a SHA"
-  )
   const repoString = status.repository.full_name
   const searchResponse = await api.search.issues({ q: `${status.commit.sha} type:pr is:open repo:${repoString}` })
 
   // https://developer.github.com/v3/search/#search-issues
-  console.log("https://developer.github.com/v3/search/#search-issues")
   const prsWithCommit = searchResponse.data.items.map((i: any) => i.number) as number[]
   for (const number of prsWithCommit) {
     // Get the PR labels
-    console.log("Get the PR labels")
     const issue = await api.issues.get({ owner, repo, number })
 
     // Get the PR combined status
-    console.log("Get the PR combined status")
     const mergeLabel = issue.data.labels.find((l: LabelLabel) => l.name === "merge-on-green")
     if (!mergeLabel) {
       return console.error("PR does not have merge-on-green")
     }
 
     // Merge the PR
-    console.log(`Merge the PR ${owner}, ${repo}, ${number}`)
     try {
       await api.pullRequests.merge({ owner, repo, number, commit_title: "Merged by Peril" })
       console.log(`Merged Pull Request ${number}`)
