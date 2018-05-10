@@ -37,5 +37,8 @@
   "lint-staged": {
     "*.@(ts|tsx)": ["yarn prettier --write", "git add"],
     "*.json": ["yarn prettier --write", "git add"]
+  },
+  "dependencies": {
+    "github-webhook-event-types": "^1.1.0"
   }
 }
