@@ -1,6 +1,7 @@
 import { schedule, danger, markdown } from "danger"
 import { Status } from "github-webhook-event-types"
 import { LabelLabel } from "github-webhook-event-types/source/Label"
+import { error } from "util"
 
 export default async (status: Status) => {
   console.info("Starting rule to merge-on-green")
@@ -45,8 +46,13 @@ export default async (status: Status) => {
     }
 
     // Merge the PR
-    console.log("Merge the PR")
-    await api.pullRequests.merge({ owner, repo, number, commit_title: "Merged by Peril" })
-    console.log(`Merged Pull Request ${number}`)
+    console.log(`Merge the PR ${owner}, ${repo}, ${number}`)
+    try {
+      await api.pullRequests.merge({ owner, repo, number, commit_title: "Merged by Peril" })
+      console.log(`Merged Pull Request ${number}`)
+    } catch {
+      console.error("Error merging PR:")
+      console.error(error)
+    }
   }
 }
