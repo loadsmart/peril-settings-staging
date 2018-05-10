@@ -1,6 +1,6 @@
 // original source: https://github.com/danger/peril-settings/raw/master/org/mergeOnGreen.ts
 
-import { schedule, danger, markdown } from "danger"
+import { danger } from "danger"
 import { Status } from "github-webhook-event-types"
 import { LabelLabel } from "github-webhook-event-types/source/Label"
 
