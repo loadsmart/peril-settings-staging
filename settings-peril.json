@@ -13,7 +13,8 @@
       "status.success": "loadsmart/peril-settings@rules/merge-on-green.ts"
     },
     "loadsmart/ios-sdk": {
-      "pull_request": "loadsmart/peril-settings@rules/ios-prs.ts"
+      "pull_request": "loadsmart/peril-settings@rules/ios-prs.ts",
+      "issues.opened": "dangerfile.ts"
     },
     "loadsmart/alice": {
       "pull_request": "loadsmart/peril-settings@rules/python-prs.ts",
