@@ -15,7 +15,7 @@ it("fails when import star is added", () => {
   dm.danger.git = {
     modified_files: [modifiedFile],
     created_files: [],
-    diffForFile: (filename: String) => {
+    diffForFile: (filename: string) => {
       const line = filename === modifiedFile ? "from models import *" : ""
       return Promise.resolve({ added: line })
     },
@@ -32,7 +32,7 @@ it("does not fail when import star is added only to non-python files", () => {
   dm.danger.git = {
     modified_files: [modifiedFile],
     created_files: [],
-    diffForFile: (filename: String) => {
+    diffForFile: (filename: string) => {
       const line = filename === modifiedFile ? "from models import *" : ""
       return Promise.resolve({ added: line })
     },
@@ -49,7 +49,7 @@ it("does not fail when import star is only present in renamed files", () => {
   dm.danger.git = {
     modified_files: [modifiedFile],
     created_files: [],
-    diffForFile: (filename: String) => {
+    diffForFile: (filename: string) => {
       const line = filename === modifiedFile ? "from models import *" : ""
       return Promise.resolve({ added: line })
     },
@@ -66,7 +66,7 @@ it("does not fail when there is no import star in python files", () => {
   dm.danger.git = {
     modified_files: [modifiedFile],
     created_files: [],
-    diffForFile: (filename: String) => {
+    diffForFile: (filename: string) => {
       const line = filename === modifiedFile ? "from models import Shipment" : ""
       return Promise.resolve({ added: line })
     },
