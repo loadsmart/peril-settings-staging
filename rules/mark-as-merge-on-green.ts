@@ -48,9 +48,11 @@ export default async (issueComment: IssueComment) => {
   // Check for org access, so that some rando doesn't
   // try to merge something without permission
   try {
+    console.info("Checking membership for: ", org, username)
     await api.orgs.checkMembership({ org, username })
   } catch (error) {
     // Someone does not have permission to force a merge
+    console.error(error)
     return console.error("Sender does not have permission to merge")
   }
 
