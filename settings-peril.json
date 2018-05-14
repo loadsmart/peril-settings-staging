@@ -1,5 +1,6 @@
 {
   "settings": {
+    "onlyForOrgMembers": true,
     "modules": ["danger-plugin-spellcheck"]
   },
   "rules": {
