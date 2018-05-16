@@ -1,5 +1,5 @@
 import { schedule, danger, markdown } from "danger"
-import { Status } from "github-webhook-event-types"
+import { Status, PullRequest } from "github-webhook-event-types"
 import { LabelLabel } from "github-webhook-event-types/source/Label"
 import { error } from "util"
 
@@ -43,6 +43,20 @@ export default async (status: Status) => {
     } catch (e) {
       console.error("Error merging PR:")
       console.error(e)
+    }
+
+    const prResponse = await api.pullRequests.get({ owner, repo, number })
+    const thisPullRequest = prResponse.data as PullRequest
+    const branchRef = thisPullRequest.pull_request.head.ref
+
+    // Delete the merged branch
+    try {
+      console.info(`Deleting branch ${branchRef}`)
+      await api.gitdata.deleteReference({ owner, repo, ref: branchRef })
+      console.info(`Branch ${branchRef} deleted`)
+    } catch (error) {
+      console.error(`Error deleting branch ${branchRef}`)
+      console.error(error)
     }
   }
 }
