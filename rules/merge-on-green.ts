@@ -44,18 +44,5 @@ export default async (status: Status) => {
       console.error("Error merging PR:")
       console.error(e)
     }
-
-    // Delete merged branch
-    try {
-      console.info(`Deleting branch ${branchRef}`)
-      const prResponse = await api.pullRequests.get({ owner, repo, number })
-      const thisPullRequest = prResponse.data as PullRequest
-      const branchRef = thisPullRequest.pull_request.head.ref
-      await api.gitdata.deleteReference({ owner, repo, ref: branchRef })
-      console.info(`Branch ${branchRef} deleted`)
-    } catch (error) {
-      console.error(`Error deleting branch ${branchRef}`)
-      console.error(error)
-    }
   }
 }
