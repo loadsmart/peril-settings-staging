@@ -49,7 +49,7 @@ export default async (status: Status) => {
     const thisPullRequest = prResponse.data as PullRequest
     const branchRef = thisPullRequest.pull_request.head.ref
 
-    // Delete the merged branch
+    // Delete merged branch
     try {
       console.info(`Deleting branch ${branchRef}`)
       await api.gitdata.deleteReference({ owner, repo, ref: branchRef })
