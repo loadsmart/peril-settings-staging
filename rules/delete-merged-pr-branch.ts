@@ -18,7 +18,7 @@ export const wrap: any = isJest ? _test : _run
 export const deleteMergedPRBranch = wrap("Delete branch of a merged PR", async () => {
   const owner = danger.github.thisPR.owner
   const repo = danger.github.thisPR.repo
-  const ref = danger.github.pr.head.ref
+  const ref = `heads/${danger.github.pr.head.ref}`
 
   console.info(`owner: ${owner}, repo: ${repo}, ref: ${ref}`)
 
