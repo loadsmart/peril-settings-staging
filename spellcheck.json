@@ -1,0 +1,7 @@
+{
+  // The "ignore" section is case in-sensitive for words, if a word has a prefix of "/" then it will be treated as a RegExp.
+  "ignore": ["/.*.md", "/.*.yml", "fastlane", "xcode"],
+
+  // The "whitelistFiles" section is an array of files which will NOT be spellchecked.
+  "whitelistFiles": []
+}
