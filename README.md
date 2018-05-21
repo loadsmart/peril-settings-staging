@@ -1,6 +1,6 @@
 # Peril Staging Settings
 
-🔧 Settings for Loadsmart's hosted Danger *Staging* instance
+🔧 Settings for Loadsmart's hosted Danger **Staging** instance
 
 ## Start Hacking
 
