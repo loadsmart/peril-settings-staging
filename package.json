@@ -1,9 +1,9 @@
 {
-  "name": "peril-settings",
+  "name": "peril-staging-settings",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/loadsmart/peril-settings",
-  "author": "Gustavo Barbosa <gustavo@loadsmart.com>",
+  "author": "Camila Maia <camila@loadsmart.com>",
   "license": "MIT",
   "scripts": {
     "precommit": "lint-staged"
