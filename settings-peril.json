@@ -1,7 +1,10 @@
 {
   "settings": {
     "onlyForOrgMembers": true,
-    "modules": ["danger-plugin-spellcheck"]
+    "modules": [
+      "danger-plugin-spellcheck", 
+      "danger-android_lint"
+    ]
   },
   "rules": {
     "pull_request.opened": "loadsmart/peril-staging-settings@rules/all-prs.ts",
@@ -9,5 +12,10 @@
     "issues.opened": "loadsmart/peril-staging-settings@rules/all-issues.ts",
     "issue_comment.created": "loadsmart/peril-staging-settings@rules/mark-as-merge-on-green.ts",
     "status.success": "loadsmart/peril-staging-settings@rules/merge-on-green.ts"
+  }
+  "repos": {
+    "loadsmart/driver-android": {
+      "pull_request": "loadsmart/peril-staging-settings@rules/android-prs.ts"
+    }
   }
 }
