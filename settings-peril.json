@@ -12,7 +12,7 @@
     "issues.opened": "loadsmart/peril-staging-settings@rules/all-issues.ts",
     "issue_comment.created": "loadsmart/peril-staging-settings@rules/mark-as-merge-on-green.ts",
     "status.success": "loadsmart/peril-staging-settings@rules/merge-on-green.ts"
-  }
+  },
   "repos": {
     "loadsmart/driver-android": {
       "pull_request": "loadsmart/peril-staging-settings@rules/android-prs.ts"
