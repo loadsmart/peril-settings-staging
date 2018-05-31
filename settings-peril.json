@@ -4,8 +4,8 @@
     "modules": ["danger-plugin-spellcheck"]
   },
   "rules": {
-    "pull_request": "loadsmart/peril-settings@rules/all-prs.ts",
     "pull_request.closed": "loadsmart/peril-settings@rules/delete-merged-pr-branch.ts",
+    "pull_request": "loadsmart/peril-settings@rules/all-prs.ts",
     "issues.opened": "loadsmart/peril-settings@rules/all-issues.ts",
     "issue_comment.created": "loadsmart/peril-settings@rules/mark-as-merge-on-green.ts",
     "status.success": "loadsmart/peril-settings@rules/merge-on-green.ts"
