@@ -15,9 +15,8 @@ it("warns when code was changed and tests were not updated", () => {
     created_files: [],
   }
 
-  return testsUpdated().then(() => {
-    expect(dm.warn).toHaveBeenCalled()
-  })
+  testsUpdated()
+  expect(dm.warn).toHaveBeenCalled()
 })
 
 it("warns when new code file was created and tests were not updated", () => {
@@ -26,9 +25,8 @@ it("warns when new code file was created and tests were not updated", () => {
     created_files: ["head/shipments/model/shipment.py"],
   }
 
-  return testsUpdated().then(() => {
-    expect(dm.warn).toHaveBeenCalled()
-  })
+  testsUpdated()
+  expect(dm.warn).toHaveBeenCalled()
 })
 
 it("does not warn when new code file was created and tests were also updated", () => {
@@ -37,9 +35,8 @@ it("does not warn when new code file was created and tests were also updated", (
     created_files: ["head/shipments/model/shipment.py", "head/shipments/model/shipment_test.py"],
   }
 
-  return testsUpdated().then(() => {
-    expect(dm.warn).not.toHaveBeenCalled()
-  })
+  testsUpdated()
+  expect(dm.warn).not.toHaveBeenCalled()
 })
 
 it("does not warn when code was changed and tests were also updated", () => {
@@ -48,7 +45,6 @@ it("does not warn when code was changed and tests were also updated", () => {
     created_files: [],
   }
 
-  return testsUpdated().then(() => {
-    expect(dm.warn).not.toHaveBeenCalled()
-  })
+  testsUpdated()
+  expect(dm.warn).not.toHaveBeenCalled()
 })

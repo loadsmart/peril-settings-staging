@@ -1,21 +1,7 @@
-import { schedule, danger, fail, warn } from "danger"
+import { danger, fail, warn } from "danger"
 
-// The inspiration for this is https://github.com/artsy/artsy-danger/blob/f019ee1a3abffabad65014afabe07cb9a12274e7/org/all-prs.ts
-const isJest = typeof jest !== "undefined"
-
-// Stores the parameter in a closure that can be invoked in tests.
-const _test = (reason: string, closure: () => void | Promise<any>) =>
-  // We return a closure here so that the (promise is resolved|closure is invoked)
-  // during test time and not when we call wrap().
-  () => (closure instanceof Promise ? closure : Promise.resolve(closure()))
-
-// Either schedules the promise for execution via Danger, or invokes closure.
-const _run = (reason: string, closure: () => void | Promise<any>) =>
-  closure instanceof Promise ? schedule(closure) : closure()
-
-export const wrap: any = isJest ? _test : _run
-
-export const pdb = wrap("Don't let (i)pdb get into master", async () => {
+// Don't let (i)pdb get into master
+export const pdb = async () => {
   const files = [...danger.git.modified_files, ...danger.git.created_files]
   const regexp = RegExp(`import i?pdb`)
   async function checkFiles() {
@@ -28,9 +14,10 @@ export const pdb = wrap("Don't let (i)pdb get into master", async () => {
     }
   }
   await checkFiles()
-})
+}
 
-export const importStar = wrap("Check if diff contains 'import *'", async () => {
+// Check if diff contains 'import *'
+export const importStar = async () => {
   const files = [...danger.git.modified_files, ...danger.git.created_files]
   const pyFiles = files
     .filter(file => {
@@ -51,9 +38,10 @@ export const importStar = wrap("Check if diff contains 'import *'", async () => 
   }
 
   await checkFiles()
-})
+}
 
-export const pipfileLock = wrap("Don't let Pipfile.lock outdated", () => {
+// Don't let Pipfile.lock outdated
+export const pipfileLock = () => {
   const files = [...danger.git.modified_files, ...danger.git.created_files]
   const hasPipfile = files.some(file => {
     return file == "Pipfile"
@@ -65,4 +53,10 @@ export const pipfileLock = wrap("Don't let Pipfile.lock outdated", () => {
   if (hasPipfile && !hasPipfileLock) {
     warn("Pipfile was modified and Pipfile.lock was not. Please update your Python dependencies")
   }
-})
+}
+
+export default async () => {
+  pdb()
+  await importStar()
+  pipfileLock()
+}

@@ -19,9 +19,9 @@ it("warns when code has changes on xib files and PR has no description", () => {
       body: "Not a screenshot",
     },
   }
-  return viewFilesWereChanged().then(() => {
-    expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
-  })
+
+  viewFilesWereChanged()
+  expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
 })
 
 it("warns when code has changes on storyboard files and PR has no description", () => {
@@ -34,9 +34,9 @@ it("warns when code has changes on storyboard files and PR has no description", 
       body: "Not a screenshot",
     },
   }
-  return viewFilesWereChanged().then(() => {
-    expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
-  })
+
+  viewFilesWereChanged()
+  expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
 })
 
 it("warns when code has changes on view files and PR has no description", () => {
@@ -49,9 +49,9 @@ it("warns when code has changes on view files and PR has no description", () => 
       body: "Not a screenshot",
     },
   }
-  return viewFilesWereChanged().then(() => {
-    expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
-  })
+
+  viewFilesWereChanged()
+  expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
 })
 
 it("warns when code has changes on button files and PR has no description", () => {
@@ -64,9 +64,9 @@ it("warns when code has changes on button files and PR has no description", () =
       body: "Not a screenshot",
     },
   }
-  return viewFilesWereChanged().then(() => {
-    expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
-  })
+
+  viewFilesWereChanged()
+  expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
 })
 
 it("warns when code has changes in a file inside /view/ directory", () => {
@@ -79,9 +79,9 @@ it("warns when code has changes in a file inside /view/ directory", () => {
       body: "Not a screenshot",
     },
   }
-  return viewFilesWereChanged().then(() => {
-    expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
-  })
+
+  viewFilesWereChanged()
+  expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
 })
 
 it("warns when code has changes in a file inside /views/ directory", () => {
@@ -94,9 +94,9 @@ it("warns when code has changes in a file inside /views/ directory", () => {
       body: "Not a screenshot",
     },
   }
-  return viewFilesWereChanged().then(() => {
-    expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
-  })
+
+  viewFilesWereChanged()
+  expect(dm.warn).toHaveBeenCalledWith("View files were changed. Maybe you want to add a screenshot to your PR.")
 })
 
 it("does not warn when code has view changes and PR has a screenshot", () => {
@@ -109,9 +109,9 @@ it("does not warn when code has view changes and PR has a screenshot", () => {
       body: "![ls](https://user-images.githubusercontent.com/235208/37855446-b8449314-2ec5-11e8-9137-3ccee53f5c54.png)",
     },
   }
-  return viewFilesWereChanged().then(() => {
-    expect(dm.warn).not.toHaveBeenCalled()
-  })
+
+  viewFilesWereChanged()
+  expect(dm.warn).not.toHaveBeenCalled()
 })
 
 it("does not warn when code has view changes and PR has a snapshot test", () => {
@@ -124,9 +124,9 @@ it("does not warn when code has view changes and PR has a snapshot test", () => 
       body: "Not a screenshot",
     },
   }
-  return viewFilesWereChanged().then(() => {
-    expect(dm.warn).not.toHaveBeenCalled()
-  })
+
+  viewFilesWereChanged()
+  expect(dm.warn).not.toHaveBeenCalled()
 })
 
 it("does not warn when code has no view changes", () => {
@@ -139,7 +139,7 @@ it("does not warn when code has no view changes", () => {
       body: "![ls](https://user-images.githubusercontent.com/235208/37855446-b8449314-2ec5-11e8-9137-3ccee53f5c54.png)",
     },
   }
-  return viewFilesWereChanged().then(() => {
-    expect(dm.warn).not.toHaveBeenCalled()
-  })
+
+  viewFilesWereChanged()
+  expect(dm.warn).not.toHaveBeenCalled()
 })

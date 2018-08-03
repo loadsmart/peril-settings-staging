@@ -1,9 +1,8 @@
-import { schedule, danger, markdown } from "danger"
-import { Status, PullRequest } from "github-webhook-event-types"
+import { danger } from "danger"
+import { Status } from "github-webhook-event-types"
 import { LabelLabel } from "github-webhook-event-types/source/Label"
-import { error } from "util"
 
-export default async (status: Status) => {
+export const mergeOnGreen = async (status: Status) => {
   const api = danger.github.api
 
   if (status.state !== "success") {
@@ -46,3 +45,5 @@ export default async (status: Status) => {
     }
   }
 }
+
+export default mergeOnGreen

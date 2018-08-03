@@ -10,14 +10,14 @@ beforeEach(() => {
 
 it("warns when PR is classed as Work in Progress", () => {
   dm.danger = { github: { pr: { title: "WIP: awesome feature" } } }
-  return workInProgress().then(() => {
-    expect(dm.warn).toHaveBeenCalledWith("Do not merge it yet. PR is still in progress.")
-  })
+
+  workInProgress()
+  expect(dm.warn).toHaveBeenCalledWith("Do not merge it yet. PR is still in progress.")
 })
 
 it("does not warn if title does not contain keyword WIP", () => {
   dm.danger = { github: { pr: { title: "awesome feature" } } }
-  return workInProgress().then(() => {
-    expect(dm.warn).not.toHaveBeenCalled()
-  })
+
+  workInProgress()
+  expect(dm.warn).not.toHaveBeenCalled()
 })

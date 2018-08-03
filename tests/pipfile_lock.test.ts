@@ -14,11 +14,10 @@ it("warns when Pipfile was modified and Pipfile.lock was not", () => {
     modified_files: ["Pipfile"],
   }
 
-  return pipfileLock().then(() => {
-    expect(dm.warn).toHaveBeenCalledWith(
-      "Pipfile was modified and Pipfile.lock was not. Please update your Python dependencies"
-    )
-  })
+  pipfileLock()
+  expect(dm.warn).toHaveBeenCalledWith(
+    "Pipfile was modified and Pipfile.lock was not. Please update your Python dependencies"
+  )
 })
 
 it("does not warn when both Pipfile and Pipfile.lock were modified", () => {
@@ -26,9 +25,8 @@ it("does not warn when both Pipfile and Pipfile.lock were modified", () => {
     modified_files: ["Pipfile", "Pipfile.lock"],
   }
 
-  return pipfileLock().then(() => {
-    expect(dm.warn).not.toHaveBeenCalled()
-  })
+  pipfileLock()
+  expect(dm.warn).not.toHaveBeenCalled()
 })
 
 it("does not warn when both Pipfile and Pipfile.lock were modified", () => {
@@ -36,7 +34,6 @@ it("does not warn when both Pipfile and Pipfile.lock were modified", () => {
     modified_files: ["Something else"],
   }
 
-  return pipfileLock().then(() => {
-    expect(dm.warn).not.toHaveBeenCalled()
-  })
+  pipfileLock()
+  expect(dm.warn).not.toHaveBeenCalled()
 })

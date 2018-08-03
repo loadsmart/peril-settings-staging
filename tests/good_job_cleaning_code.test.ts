@@ -16,9 +16,9 @@ it("messages when number of deletions is greater than additions", () => {
       deletions: 2,
     },
   }
-  return goodJobCleaningCode().then(() => {
-    expect(dm.message).toHaveBeenCalledWith("Good job on cleaning the code")
-  })
+
+  goodJobCleaningCode()
+  expect(dm.message).toHaveBeenCalledWith("Good job on cleaning the code")
 })
 
 it("does not message when number of deletions is equal to additions", () => {
@@ -28,9 +28,9 @@ it("does not message when number of deletions is equal to additions", () => {
       deletions: 1,
     },
   }
-  return goodJobCleaningCode().then(() => {
-    expect(dm.message).not.toHaveBeenCalled()
-  })
+
+  goodJobCleaningCode()
+  expect(dm.message).not.toHaveBeenCalled()
 })
 
 it("does not message when number of deletions is lesser than additions", () => {
@@ -40,7 +40,7 @@ it("does not message when number of deletions is lesser than additions", () => {
       deletions: 1,
     },
   }
-  return goodJobCleaningCode().then(() => {
-    expect(dm.message).not.toHaveBeenCalled()
-  })
+
+  goodJobCleaningCode()
+  expect(dm.message).not.toHaveBeenCalled()
 })

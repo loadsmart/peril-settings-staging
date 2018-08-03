@@ -13,9 +13,9 @@ it("fails when PR contains merge commits", () => {
     git: { commits: [{ message: "Merge branch 'develop'" }] },
     github: { pr: { base: { ref: "develop" } } },
   }
-  return mergeCommits().then(() => {
-    expect(dm.fail).toHaveBeenCalledWith("Please rebase to get rid of the merge commits in this PR.")
-  })
+
+  mergeCommits()
+  expect(dm.fail).toHaveBeenCalledWith("Please rebase to get rid of the merge commits in this PR.")
 })
 
 it("doest not fail when PR doest not contain merge commits", () => {
@@ -23,7 +23,7 @@ it("doest not fail when PR doest not contain merge commits", () => {
     git: { commits: [{ message: "my awesome commit" }] },
     github: { pr: { base: { ref: "develop" } } },
   }
-  return mergeCommits().then(() => {
-    expect(dm.fail).not.toHaveBeenCalled()
-  })
+
+  mergeCommits()
+  expect(dm.fail).not.toHaveBeenCalled()
 })

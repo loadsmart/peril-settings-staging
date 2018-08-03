@@ -14,9 +14,8 @@ it("warns when Podfile was modified and Podfile.lock was not", () => {
     modified_files: ["Podfile"],
   }
 
-  return podfileLock().then(() => {
-    expect(dm.warn).toHaveBeenCalledWith("Podfile was modified and Podfile.lock was not. Please update your lock file.")
-  })
+  podfileLock()
+  expect(dm.warn).toHaveBeenCalledWith("Podfile was modified and Podfile.lock was not. Please update your lock file.")
 })
 
 it("does not warn when both Podfile and Podfile.lock were modified", () => {
@@ -24,9 +23,8 @@ it("does not warn when both Podfile and Podfile.lock were modified", () => {
     modified_files: ["Podfile", "Podfile.lock"],
   }
 
-  return podfileLock().then(() => {
-    expect(dm.warn).not.toHaveBeenCalled()
-  })
+  podfileLock()
+  expect(dm.warn).not.toHaveBeenCalled()
 })
 
 it("does not warn when neither Podfile nor Podfile.lock were modified", () => {
@@ -34,7 +32,6 @@ it("does not warn when neither Podfile nor Podfile.lock were modified", () => {
     modified_files: ["Dummy.swift"],
   }
 
-  return podfileLock().then(() => {
-    expect(dm.warn).not.toHaveBeenCalled()
-  })
+  podfileLock()
+  expect(dm.warn).not.toHaveBeenCalled()
 })

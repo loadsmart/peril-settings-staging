@@ -14,11 +14,10 @@ it("warns when package.json was modified and package-lock.json was not", () => {
     modified_files: ["package.json"],
   }
 
-  return packageLock().then(() => {
-    expect(dm.warn).toHaveBeenCalledWith(
-      "package.json was modified and package-lock.json was not. Please update your JS dependencies"
-    )
-  })
+  packageLock()
+  expect(dm.warn).toHaveBeenCalledWith(
+    "package.json was modified and package-lock.json was not. Please update your JS dependencies"
+  )
 })
 
 it("does not warn when package.json was modified and package-lock.json too", () => {
@@ -26,7 +25,6 @@ it("does not warn when package.json was modified and package-lock.json too", () 
     modified_files: ["package.json", "package-lock.json"],
   }
 
-  return packageLock().then(() => {
-    expect(dm.warn).not.toHaveBeenCalled()
-  })
+  packageLock()
+  expect(dm.warn).not.toHaveBeenCalled()
 })

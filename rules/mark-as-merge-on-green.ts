@@ -13,8 +13,8 @@ interface Label {
   default: boolean
 }
 
-/** If a comment to an issue contains "merge-on-green", apply a label for it to be merged when green. */
-export default async (issueComment: IssueComment) => {
+// If a comment to an issue contains "merge-on-green", apply a label for it to be merged when green.
+export const markAsMergeOnGreen = async (issueComment: IssueComment) => {
   console.info("Starting rule to mark as merge on green")
 
   const issue = issueComment.issue
@@ -66,3 +66,5 @@ export default async (issueComment: IssueComment) => {
   await api.issues.addLabels({ owner, repo, number: issue.number, labels: ["merge-on-green"] })
   console.log("Updated the PR with a merge-on-green label")
 }
+
+export default markAsMergeOnGreen
