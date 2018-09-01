@@ -22,6 +22,13 @@ export const needsDescription = wrap("Every PR requires a description", () => {
   }
 })
 
+function pad(number) {
+  if (number < 10) {
+    return "0" + number
+  }
+  return number
+}
+
 function formatDate(dt) {
   return (
     dt.getUTCFullYear() +
