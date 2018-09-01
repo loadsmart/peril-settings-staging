@@ -45,7 +45,7 @@ export const workInProgress = wrap("Do not merge it yet. PR is still in progress
   if (wipPR) {
     const now = new Date()
     const lastCommit = danger.github.commits[-1].sha
-    danger.github.api.checks.create({
+    response = await danger.github.api.checks.create({
       owner: danger.github.thisPR.owner,
       repo: danger.github.thisPR.repo,
       head_sha: lastCommit,
@@ -58,6 +58,8 @@ export const workInProgress = wrap("Do not merge it yet. PR is still in progress
         summary: "Do not merge it yet. PR is still in progress.",
       },
     })
+    console.log("lastCommit:", lastCommit)
+    console.log("response:", response)
     // warn("Do not merge it yet. PR is still in progress.")
   }
 })
