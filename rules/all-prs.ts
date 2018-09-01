@@ -54,7 +54,7 @@ export const workInProgress = wrap("Do not merge it yet. PR is still in progress
     const commits = danger.github.commits
     const lastCommit = commits[commits.length - 1].sha
     console.log("lastCommit:", lastCommit)
-    response = await danger.github.api.checks.create({
+    const response = await danger.github.api.checks.create({
       owner: danger.github.thisPR.owner,
       repo: danger.github.thisPR.repo,
       head_branch: pr.head,
