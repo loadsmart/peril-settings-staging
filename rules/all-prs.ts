@@ -22,11 +22,41 @@ export const needsDescription = wrap("Every PR requires a description", () => {
   }
 })
 
+function formatDate(dt) {
+  return (
+    dt.getUTCFullYear() +
+    "-" +
+    pad(dt.getUTCMonth() + 1) +
+    "-" +
+    pad(dt.getUTCDate()) +
+    "T" +
+    pad(dt.getUTCHours()) +
+    ":" +
+    pad(dt.getUTCMinutes()) +
+    ":" +
+    pad(dt.getUTCSeconds()) +
+    "Z"
+  )
+}
+
 export const workInProgress = wrap("Do not merge it yet. PR is still in progress.", () => {
   const pr = danger.github.pr
   const wipPR = pr.title.toLowerCase().includes("wip")
   if (wipPR) {
-    warn("Do not merge it yet. PR is still in progress.")
+    const now = new Date()
+    danger.github.checks.create({
+      owner: danger.github.thisPR.owner,
+      repo: danger.github.thisPR.repo,
+      name: "wip",
+      status: "completed",
+      conclusion: "failure",
+      completed_at: formatDate(now),
+      output: {
+        title: "Work In Progress",
+        summary: "Do not merge it yet. PR is still in progress.",
+      },
+    })
+    // warn("Do not merge it yet. PR is still in progress.")
   }
 })
 
