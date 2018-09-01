@@ -1,13 +1,10 @@
 {
   "settings": {
     "onlyForOrgMembers": true,
-    "modules": [
-      "danger-plugin-spellcheck", 
-      "danger-android_lint"
-    ]
+    "modules": ["danger-plugin-spellcheck", "danger-android_lint"]
   },
   "rules": {
-    "pull_request.opened": "loadsmart/peril-staging-settings@rules/all-prs.ts",
+    "pull_request": "loadsmart/peril-staging-settings@rules/all-prs.ts",
     "pull_request.closed": "loadsmart/peril-staging-settings@rules/delete-merged-pr-branch.ts",
     "issues.opened": "loadsmart/peril-staging-settings@rules/all-issues.ts",
     "issue_comment.created": "loadsmart/peril-staging-settings@rules/mark-as-merge-on-green.ts",
