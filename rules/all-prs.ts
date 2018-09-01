@@ -44,9 +44,11 @@ export const workInProgress = wrap("Do not merge it yet. PR is still in progress
   const wipPR = pr.title.toLowerCase().includes("wip")
   if (wipPR) {
     const now = new Date()
-    danger.github.checks.create({
+    const lastCommit = danger.github.commits[-1].sha
+    danger.github.api.checks.create({
       owner: danger.github.thisPR.owner,
       repo: danger.github.thisPR.repo,
+      head_sha: lastCommit,
       name: "wip",
       status: "completed",
       conclusion: "failure",
