@@ -51,11 +51,13 @@ export const workInProgress = wrap("Do not merge it yet. PR is still in progress
   const wipPR = pr.title.toLowerCase().includes("wip")
   if (wipPR) {
     const now = new Date()
-    // const lastCommit = danger.github.commits[-1].sha
+    const commits = danger.github.commits
+    const lastCommit = commits[commits.length - 1].sha
+    console.log("lastCommit:", lastCommit)
     response = await danger.github.api.checks.create({
       owner: danger.github.thisPR.owner,
       repo: danger.github.thisPR.repo,
-      // head_sha: lastCommit,
+      head_sha: lastCommit,
       name: "wip",
       status: "completed",
       conclusion: "failure",
@@ -65,7 +67,6 @@ export const workInProgress = wrap("Do not merge it yet. PR is still in progress
         summary: "Do not merge it yet. PR is still in progress.",
       },
     })
-    // console.log("lastCommit:", lastCommit)
     console.log("response:", response)
     // warn("Do not merge it yet. PR is still in progress.")
   }
