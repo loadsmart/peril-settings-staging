@@ -57,7 +57,8 @@ export const workInProgress = wrap("Do not merge it yet. PR is still in progress
     response = await danger.github.api.checks.create({
       owner: danger.github.thisPR.owner,
       repo: danger.github.thisPR.repo,
-      head_sha: lastCommit,
+      // new versions use head_sha
+      head_branch: lastCommit,
       name: "wip",
       status: "completed",
       conclusion: "failure",
