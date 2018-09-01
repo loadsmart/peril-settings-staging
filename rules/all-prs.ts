@@ -1,4 +1,5 @@
 import { schedule, danger, fail, warn, message } from "danger"
+import "utils"
 
 // The inspiration for this is https://github.com/artsy/artsy-danger/blob/f019ee1a3abffabad65014afabe07cb9a12274e7/org/all-prs.ts
 const isJest = typeof jest !== "undefined"
@@ -22,35 +23,19 @@ export const needsDescription = wrap("Every PR requires a description", () => {
   }
 })
 
-function padn(number) {
-  if (number < 10) {
-    return "0" + number
-  }
-  return number
-}
-
-function formatDate(dt) {
-  return (
-    dt.getUTCFullYear() +
-    "-" +
-    padn(dt.getUTCMonth() + 1) +
-    "-" +
-    padn(dt.getUTCDate()) +
-    "T" +
-    padn(dt.getUTCHours()) +
-    ":" +
-    padn(dt.getUTCMinutes()) +
-    ":" +
-    padn(dt.getUTCSeconds()) +
-    "Z"
-  )
-}
-
 export const workInProgress = wrap("Do not merge it yet. PR is still in progress.", async () => {
   const pr = danger.github.pr
   const wipPR = pr.title.toLowerCase().includes("wip")
+
   if (wipPR) {
-    const now = new Date()
+    await utils.fail(danger, {
+      name: "wip",
+      title: "Work In Progress",
+      summary: "Do not merge it yet. PR is still in progress",
+      text:
+        "Pull Requests marked with 'wip' mark shouldn't be merged. Usually this is used by the author to gather feedback on early development stages.",
+    })
+    /*const now = new Date()
     const commits = danger.github.commits
     const lastCommit = commits[commits.length - 1].sha
     console.log("lastCommit:", lastCommit)
@@ -67,8 +52,7 @@ export const workInProgress = wrap("Do not merge it yet. PR is still in progress
         title: "Work In Progress",
         summary: "Do not merge it yet. PR is still in progress.",
       },
-    })
-    console.log("response:", response)
+    })*/
     // warn("Do not merge it yet. PR is still in progress.")
   }
 })
