@@ -39,7 +39,7 @@ function formatDate(dt) {
   )
 }
 
-export const workInProgress = wrap("Do not merge it yet. PR is still in progress.", () => {
+export const workInProgress = wrap("Do not merge it yet. PR is still in progress.", async () => {
   const pr = danger.github.pr
   const wipPR = pr.title.toLowerCase().includes("wip")
   if (wipPR) {
