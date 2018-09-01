@@ -22,7 +22,7 @@ export const needsDescription = wrap("Every PR requires a description", () => {
   }
 })
 
-function pad(number) {
+function padn(number) {
   if (number < 10) {
     return "0" + number
   }
@@ -33,15 +33,15 @@ function formatDate(dt) {
   return (
     dt.getUTCFullYear() +
     "-" +
-    pad(dt.getUTCMonth() + 1) +
+    padn(dt.getUTCMonth() + 1) +
     "-" +
-    pad(dt.getUTCDate()) +
+    padn(dt.getUTCDate()) +
     "T" +
-    pad(dt.getUTCHours()) +
+    padn(dt.getUTCHours()) +
     ":" +
-    pad(dt.getUTCMinutes()) +
+    padn(dt.getUTCMinutes()) +
     ":" +
-    pad(dt.getUTCSeconds()) +
+    padn(dt.getUTCSeconds()) +
     "Z"
   )
 }
