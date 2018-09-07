@@ -60,13 +60,6 @@ export const testsUpdated = () => {
   }
 }
 
-// Congratulate for doing some housekeeping
-export const goodJobCleaningCode = () => {
-  if (danger.github.pr.deletions > danger.github.pr.additions) {
-    message("Good job on cleaning the code")
-  }
-}
-
 // Default run
 export default async () => {
   needsDescription()
@@ -74,5 +67,4 @@ export default async () => {
   mergeCommits()
   await changelog()
   testsUpdated()
-  goodJobCleaningCode()
 }
