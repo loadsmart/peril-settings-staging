@@ -21,3 +21,7 @@ export const approveReleasePR = async () => {
     }
   }
 }
+
+export default async () => {
+  approveReleasePR()
+}
