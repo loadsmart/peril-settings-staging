@@ -1,6 +1,5 @@
 {
   "settings": {
-    "ignored_repos": ["loadsmart/peril-hack"],
     "onlyForOrgMembers": true,
     "modules": ["danger-plugin-spellcheck"]
   },
