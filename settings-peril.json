@@ -11,7 +11,7 @@
   },
   "repos": {
     "loadsmart/alice": {
-      "pull_request.opened": "loadsmart/peril-settings-staging@rules/python-prs.ts"
+      "pull_request": "loadsmart/peril-settings-staging@rules/python-prs.ts"
     }
   }
 }
