@@ -11,17 +11,5 @@
     "issue_comment.created": "loadsmart/peril-settings-staging@rules/mark-as-merge-on-green.ts",
     "status.success": "loadsmart/peril-settings-staging@rules/merge-on-green.ts",
     "pull_request_review.submitted": "loadsmart/peril-settings-staging@rules/merge-on-green.ts"
-  },
-  "repos": {
-    "loadsmart/driver-ios": {
-      "pull_request": "loadsmart/peril-settings-staging@rules/ios-prs.ts"
-    },
-    "loadsmart/ios-sdk": {
-      "pull_request": "loadsmart/peril-settings-staging@rules/ios-prs.ts",
-      "issues.opened": "dangerfile.ts"
-    },
-    "loadsmart/alice": {
-      "pull_request": "loadsmart/peril-settings-staging@rules/python-prs.ts"
-    }
   }
 }
