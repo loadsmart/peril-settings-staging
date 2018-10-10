@@ -1,12 +1,13 @@
 {
   "settings": {
-    "onlyForOrgMembers": true,
-    "modules": ["danger-plugin-spellcheck"]
+    "onlyForOrgMembers": true
   },
   "rules": {
-    "pull_request.opened": "loadsmart/peril-settings-staging@rules/release-prs.ts",
+    "pull_request.opened": [
+      "loadsmart/peril-settings-staging@rules/needs-description.ts",
+      "loadsmart/peril-settings-staging@rules/release-prs.ts"
+    ],
     "pull_request.closed": "loadsmart/peril-settings-staging@rules/delete-merged-pr-branch.ts",
-    "pull_request": "loadsmart/peril-settings-staging@rules/all-prs.ts",
     "issue_comment.created": "loadsmart/peril-settings-staging@rules/mark-as-merge-on-green.ts",
     "status.success": "loadsmart/peril-settings-staging@rules/merge-on-green.ts",
     "pull_request_review.submitted": "loadsmart/peril-settings-staging@rules/merge-on-green.ts"
