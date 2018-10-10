@@ -8,5 +8,10 @@
     "issue_comment.created": "loadsmart/peril-settings@rules/mark-as-merge-on-green.ts",
     "status.success": "loadsmart/peril-settings@rules/merge-on-green.ts",
     "pull_request_review.submitted": "loadsmart/peril-settings@rules/merge-on-green.ts"
+  },
+  "repos": {
+    "loadsmart/alice": {
+      "pull_request.opened": "loadsmart/peril-settings-staging@rules/python-prs.ts"
+    }
   }
 }
