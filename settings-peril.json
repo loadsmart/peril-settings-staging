@@ -1,6 +1,8 @@
 {
   "settings": {
-    "onlyForOrgMembers": true
+    "ignored_repos": ["loadsmart/peril-hack"],
+    "onlyForOrgMembers": true,
+    "modules": ["danger-plugin-spellcheck"]
   },
   "rules": {
     "pull_request.opened": "loadsmart/peril-settings@rules/release-prs.ts",
@@ -11,8 +13,15 @@
     "pull_request_review.submitted": "loadsmart/peril-settings@rules/merge-on-green.ts"
   },
   "repos": {
+    "loadsmart/driver-ios": {
+      "pull_request": "loadsmart/peril-settings@rules/ios-prs.ts"
+    },
+    "loadsmart/ios-sdk": {
+      "pull_request": "loadsmart/peril-settings@rules/ios-prs.ts",
+      "issues.opened": "dangerfile.ts"
+    },
     "loadsmart/alice": {
-      "pull_request": "loadsmart/peril-settings-staging@rules/python-prs.ts"
+      "pull_request": "loadsmart/peril-settings@rules/python-prs.ts"
     }
   }
 }
