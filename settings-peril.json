@@ -1,27 +1,12 @@
 {
   "settings": {
-//    "ignored_repos": ["loadsmart/peril-hack"],
-    "onlyForOrgMembers": true,
-    "modules": ["danger-plugin-spellcheck"]
+    "onlyForOrgMembers": true
   },
   "rules": {
     "pull_request.opened": "loadsmart/peril-settings@rules/release-prs.ts",
     "pull_request.closed": "loadsmart/peril-settings@rules/delete-merged-pr-branch.ts",
-//    "pull_request": "loadsmart/peril-settings@rules/all-prs.ts",
     "issue_comment.created": "loadsmart/peril-settings@rules/mark-as-merge-on-green.ts",
     "status.success": "loadsmart/peril-settings@rules/merge-on-green.ts",
     "pull_request_review.submitted": "loadsmart/peril-settings@rules/merge-on-green.ts"
-  },
-  "repos": {
-    "loadsmart/driver-ios": {
-      "pull_request": "loadsmart/peril-settings@rules/ios-prs.ts"
-    },
-    "loadsmart/ios-sdk": {
-      "pull_request": "loadsmart/peril-settings@rules/ios-prs.ts",
-      "issues.opened": "dangerfile.ts"
-    },
-    "loadsmart/alice": {
-      "pull_request": "loadsmart/peril-settings@rules/python-prs.ts"
-    }
   }
 }
