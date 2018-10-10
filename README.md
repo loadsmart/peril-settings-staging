@@ -1,38 +1,21 @@
-[![CircleCI](https://circleci.com/gh/loadsmart/peril-settings.svg?style=svg)](https://circleci.com/gh/loadsmart/peril-settings)
+# Peril Staging Settings
 
-# Peril Settings
+🔧 Settings for Loadsmart's hosted Danger *Staging* instance
 
-🔧 Settings for Loadsmart's hosted Danger instance
+## Start Hacking
 
-## How to add Peril to my repo
+This settings repository is a way to test new rules without stable repositories in Danger.
 
-**Note**: this applies to repositories under Loadsmart organization. If
-you want to install peril for your repositories, you probably want to
-take a look at the general instructions available at
-[peril repository][peril-repo].
+So it is recommended to test the rules created here into the [peril-hack repo](https://github.com/loadsmart/peril-hack)
 
-For Loadsmart organization, the app is already installed and configured.
-You'll only need to enable it for your repository.
-
-Go to [org settings][org-settings], and then select _Installed Github
-Apps_.
-
-Choose the one named `peril-loadsmart`:
-
-![peril-loadsmart app](images/choose-app.png)
-
-On the configuration screen for peril-loadsmart app, under _Repository
-Access_ section, choose the repository you want Peril to run and then
-click _Save_:
-
-![choose the repository](images/select-repo.png)
+If you still prefer to test the rules in another repository, you can add Peril Staging App to it, in the same way we do for the Peril App: https://github.com/loadsmart/peril-settings#how-to-add-peril-to-my-repo
 
 ## Install
 
 ```bash
 $ git clone git@github.com:loadsmart/peril-settings.git
-$ cd peril-settings
-$ brew intall yarn
+$ cd peril-staging-settings
+$ brew install yarn
 $ yarn install
 ```
 
@@ -41,6 +24,3 @@ $ yarn install
 ```bash
 $ yarn jest
 ```
-
-[org-settings]: https://github.com/organizations/loadsmart/settings/profile
-[peril-repo]: https://github.com/danger/peril
