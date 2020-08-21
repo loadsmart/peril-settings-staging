@@ -3,13 +3,24 @@
     "onlyForOrgMembers": true
   },
   "rules": {
-    "pull_request.opened": [
-      "loadsmart/peril-settings-staging@rules/needs-description.ts",
-      "loadsmart/peril-settings-staging@rules/release-prs.ts"
+    "pull_request.opened": "rules/common/approveReleasePR.ts",
+    "pull_request.closed": "rules/common/deleteMergedPRBranch.ts",
+    "issue_comment.created": [
+      "rules/common/markAsMergeOnGreen.ts",
+      "rules/common/markAsAutomerge.ts",
+      "rules/common/lgtm.ts"
     ],
-    "pull_request.closed": "loadsmart/peril-settings-staging@rules/delete-merged-pr-branch.ts",
-    "issue_comment.created": "loadsmart/peril-settings-staging@rules/mark-as-merge-on-green.ts",
-    "status.success": "loadsmart/peril-settings-staging@rules/merge-on-green.ts",
-    "pull_request_review.submitted": "loadsmart/peril-settings-staging@rules/merge-on-green.ts"
+    "status.success": "rules/common/mergeOnGreen.ts",
+    "pull_request_review.submitted": "rules/common/mergeOnGreen.ts",
+    "check_suite.completed": "rules/common/mergeOnGreen.ts"
+  },
+  "repos": {
+    "loadsmart/blocks": {
+      "pull_request.opened": [
+        "loadsmart/peril-settings@rules/common/changelog.ts",
+        "loadsmart/peril-settings@rules/common/needsDescription.ts",
+        "loadsmart/peril-settings@rules/common/testsUpdated.ts"
+      ]
+    }
   }
 }

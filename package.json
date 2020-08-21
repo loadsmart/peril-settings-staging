@@ -6,7 +6,8 @@
   "author": "Gustavo Barbosa <gustavo@loadsmart.com>",
   "license": "MIT",
   "scripts": {
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "test": "jest"
   },
   "devDependencies": {
     "@types/jest": "^22.1.1",
@@ -39,6 +40,7 @@
     "*.json": ["yarn prettier --write", "git add"]
   },
   "dependencies": {
-    "github-webhook-event-types": "^1.1.0"
+    "github-webhook-event-types": "^1.1.0",
+    "tar": "^4.4.2"
   }
 }
