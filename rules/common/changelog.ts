@@ -7,7 +7,7 @@ const changelog = async () => {
   const isOpen = pr.state === "open"
 
   const getContentParams = { path: "", owner: pr.head.user.login, repo: pr.head.repo.name }
-  const rootContents: any = await danger.github.api.repos.getContent(getContentParams)
+  const rootContents: any = await danger.github.api.repos.getContents(getContentParams)
 
   const hasChangelog = rootContents.data.find((file: any) => changelogs.includes(file.name))
 
