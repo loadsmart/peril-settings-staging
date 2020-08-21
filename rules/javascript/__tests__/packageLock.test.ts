@@ -12,6 +12,7 @@ beforeEach(() => {
 it("warns when package.json was modified and package-lock.json was not", () => {
   dm.danger.git = {
     modified_files: ["package.json"],
+    created_files: [],
   }
 
   packageLock()
@@ -23,6 +24,7 @@ it("warns when package.json was modified and package-lock.json was not", () => {
 it("does not warn when package.json was modified and package-lock.json too", () => {
   dm.danger.git = {
     modified_files: ["package.json", "package-lock.json"],
+    created_files: [],
   }
 
   packageLock()

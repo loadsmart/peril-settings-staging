@@ -12,6 +12,7 @@ beforeEach(() => {
 it("warns when Pipfile was modified and Pipfile.lock was not", () => {
   dm.danger.git = {
     modified_files: ["Pipfile"],
+    created_files: [],
   }
 
   pipfileLock()
@@ -23,6 +24,7 @@ it("warns when Pipfile was modified and Pipfile.lock was not", () => {
 it("does not warn when both Pipfile and Pipfile.lock were modified", () => {
   dm.danger.git = {
     modified_files: ["Pipfile", "Pipfile.lock"],
+    created_files: [],
   }
 
   pipfileLock()
@@ -32,6 +34,7 @@ it("does not warn when both Pipfile and Pipfile.lock were modified", () => {
 it("does not warn when both Pipfile and Pipfile.lock were modified", () => {
   dm.danger.git = {
     modified_files: ["Something else"],
+    created_files: [],
   }
 
   pipfileLock()

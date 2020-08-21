@@ -12,6 +12,7 @@ beforeEach(() => {
 it("warns when Podfile was modified and Podfile.lock was not", () => {
   dm.danger.git = {
     modified_files: ["Podfile"],
+    created_files: [],
   }
 
   podfileLock()
@@ -21,6 +22,7 @@ it("warns when Podfile was modified and Podfile.lock was not", () => {
 it("does not warn when both Podfile and Podfile.lock were modified", () => {
   dm.danger.git = {
     modified_files: ["Podfile", "Podfile.lock"],
+    created_files: [],
   }
 
   podfileLock()
@@ -30,6 +32,7 @@ it("does not warn when both Podfile and Podfile.lock were modified", () => {
 it("does not warn when neither Podfile nor Podfile.lock were modified", () => {
   dm.danger.git = {
     modified_files: ["Dummy.swift"],
+    created_files: [],
   }
 
   podfileLock()

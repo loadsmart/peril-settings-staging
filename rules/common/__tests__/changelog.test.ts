@@ -13,7 +13,7 @@ it("warns when code was changed and there is no changelog entry", async () => {
   dm.danger.github = {
     api: {
       repos: {
-        getContent: () => Promise.resolve({ data: [{ name: "code.js" }, { name: "CHANGELOG.md" }] }),
+        getContents: () => Promise.resolve({ data: [{ name: "code.js" }, { name: "CHANGELOG.md" }] }),
       },
     },
     pr: {
@@ -33,7 +33,7 @@ it("does not warn when repo has no changelog file", async () => {
   dm.danger.github = {
     api: {
       repos: {
-        getContent: () => Promise.resolve({ data: [{ name: "code.js" }] }),
+        getContents: () => Promise.resolve({ data: [{ name: "code.js" }] }),
       },
     },
     pr: {
@@ -53,7 +53,7 @@ it("does not warn when no production code was changed", async () => {
   dm.danger.github = {
     api: {
       repos: {
-        getContent: () => Promise.resolve({ data: [{ name: "code.js" }, { name: "CHANGELOG.md" }] }),
+        getContents: () => Promise.resolve({ data: [{ name: "code.js" }, { name: "CHANGELOG.md" }] }),
       },
     },
     pr: {
@@ -73,7 +73,7 @@ it("does not warn when there is a changelog entry", async () => {
   dm.danger.github = {
     api: {
       repos: {
-        getContent: () => Promise.resolve({ data: [{ name: "code.js" }, { name: "CHANGELOG.md" }] }),
+        getContents: () => Promise.resolve({ data: [{ name: "code.js" }, { name: "CHANGELOG.md" }] }),
       },
     },
     pr: {
@@ -93,7 +93,7 @@ it("does not warn when PR is already closed", async () => {
   dm.danger.github = {
     api: {
       repos: {
-        getContent: () => Promise.resolve({ data: [{ name: "code.js" }, { name: "CHANGELOG.md" }] }),
+        getContents: () => Promise.resolve({ data: [{ name: "code.js" }, { name: "CHANGELOG.md" }] }),
       },
     },
     pr: {
