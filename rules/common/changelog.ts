@@ -18,7 +18,9 @@ const changelog = async () => {
     const hasChangelogChanges = files.find(file => changelogs_re.test(file))
 
     if (hasCodeChanges && !hasChangelogChanges) {
-      warn("It looks like code was changed without adding anything to the Changelog.")
+      warn(`It looks like code was changed without adding anything to the Changelog.
+      If you are not sure whether this PR needs a changelog entry you may refer to this [confluence page](https://loadsmart.atlassian.net/wiki/spaces/engineering/pages/800030751/Changelog+entries#What-warrants-a-changelog-entry%3F)
+      `)
     }
   }
 }
