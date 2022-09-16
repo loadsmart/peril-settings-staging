@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: peril-settings-staging
+  description: Settings for Loadsmart's hosted Danger Staging instance
+  annotations:
+    github.com/project-slug: loadsmart/peril-settings-staging
+  tags:
+    - typescript
+spec:
+  type: other
+  lifecycle: production
+  owner: platform
