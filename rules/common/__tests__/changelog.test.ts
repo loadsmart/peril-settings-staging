@@ -108,3 +108,43 @@ it("does not warn when PR is already closed", async () => {
   await changelog()
   expect(dm.warn).not.toHaveBeenCalled()
 })
+
+it("does not warn when repo has changelog file and release.config file", async () => {
+  dm.danger.github = {
+    api: {
+      repos: {
+        getContents: () => Promise.resolve({ data: [{ name: "code.js" }, { name: "release.config.js" }] }),
+      },
+    },
+    pr: {
+      head: { user: { login: "danger" }, repo: { name: "peril-settings" } },
+      state: "open",
+    },
+  }
+  dm.danger.git = {
+    modified_files: ["src/index.html"],
+    created_files: [],
+  }
+  await changelog()
+  expect(dm.warn).not.toHaveBeenCalled()
+})
+
+it("does not warn when repo has changelog and releaserc file", async () => {
+  dm.danger.github = {
+    api: {
+      repos: {
+        getContents: () => Promise.resolve({ data: [{ name: "code.js" }, { name: ".releaserc.yaml" }] }),
+      },
+    },
+    pr: {
+      head: { user: { login: "danger" }, repo: { name: "peril-settings" } },
+      state: "open",
+    },
+  }
+  dm.danger.git = {
+    modified_files: ["src/index.html"],
+    created_files: [],
+  }
+  await changelog()
+  expect(dm.warn).not.toHaveBeenCalled()
+})
