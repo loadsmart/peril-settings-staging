@@ -11,6 +11,7 @@
     "type-check": "tsc  --noEmit"
   },
   "devDependencies": {
+    "@roadiehq/roadie-backstage-entity-validator": "^2.3.0",
     "@slack/client": "^4.2.2",
     "@types/jest": "^22.2.3",
     "@types/node": "^8.0.25",

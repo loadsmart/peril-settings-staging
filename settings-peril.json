@@ -4,7 +4,7 @@
   },
   "rules": {
     "pull_request.opened": ["rules/common/approveReleasePR.ts", "rules/common/changelog.ts"],
-    "pull_request.synchronize": "rules/common/changelog.ts",
+    "pull_request.synchronize": ["rules/common/changelog.ts", "rules/common/backstage.ts"],
     "pull_request.closed": "rules/common/deleteMergedPRBranch.ts",
     "issue_comment.created": [
       "rules/common/markAsMergeOnGreen.ts",

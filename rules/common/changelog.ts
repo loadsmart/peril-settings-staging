@@ -20,7 +20,7 @@ const changelog = async () => {
     Object.prototype.hasOwnProperty.call(packageJson, "release")
 
   if (isOpen && hasChangelog && !hasSemanticRelease) {
-    const files = [...danger.git.modified_files, ...danger.git.created_files]
+    const files = [...(danger.git.modified_files || []), ...(danger.git.created_files || [])]
 
     const hasCodeChanges = files.find(file => !file.match(/(test|spec)/i))
     const hasChangelogChanges = files.find(file => changelogs_re.test(file))

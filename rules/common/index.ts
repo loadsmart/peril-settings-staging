@@ -3,6 +3,7 @@ import workInProgress from "./workInProgress"
 import mergeCommits from "./mergeCommits"
 import changelog from "./changelog"
 import testsUpdated from "./testsUpdated"
+import backstage from "./backstage"
 
 // Default run
 export default async () => {
@@ -11,4 +12,5 @@ export default async () => {
   mergeCommits()
   await changelog()
   testsUpdated()
+  await backstage()
 }
